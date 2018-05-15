@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using DShop.Monolith.Core.Repositories;
 using DShop.Monolith.Core.Domain;
 
-namespace DShop.Monolith.Services.Identity.Services
+namespace DShop.Monolith.Services
 {
     public class IdentityService : IIdentityService
     {

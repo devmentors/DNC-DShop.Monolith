@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using DShop.Monolith.Services.DTO;
 
-namespace DShop.Monolith.Services.Services
+namespace DShop.Monolith.Services
 {
     public interface ICartService
     {

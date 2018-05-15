@@ -6,7 +6,7 @@ using DShop.Monolith.Infrastructure.Types;
 using DShop.Monolith.Services.DTO;
 using DShop.Monolith.Services.Queries;
 
-namespace DShop.Monolith.Services.Services
+namespace DShop.Monolith.Services
 {
     public class CustomersService : ICustomersService
     {

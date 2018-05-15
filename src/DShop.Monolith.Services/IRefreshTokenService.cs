@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using DShop.Monolith.Infrastructure.Authentication;
 
-namespace DShop.Monolith.Services.Identity.Services
+namespace DShop.Monolith.Services
 {
     public interface IRefreshTokenService
     {

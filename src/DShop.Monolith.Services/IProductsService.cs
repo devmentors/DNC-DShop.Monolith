@@ -4,7 +4,7 @@ using DShop.Monolith.Services.Queries;
 using System;
 using System.Threading.Tasks;
 
-namespace DShop.Monolith.Services.Products.Services
+namespace DShop.Monolith.Services
 {
     public interface IProductsService
     {

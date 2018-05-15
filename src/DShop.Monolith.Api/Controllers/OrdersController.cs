@@ -6,7 +6,7 @@ using DShop.Monolith.Services.Commands;
 using DShop.Monolith.Services.Commands.Orders;
 using DShop.Monolith.Infrastructure.Mvc;
 using DShop.Monolith.Services.Queries;
-using DShop.Monolith.Services.Orders.Services;
+using DShop.Monolith.Services;
 
 namespace DShop.Monolith.Api.Controllers
 {

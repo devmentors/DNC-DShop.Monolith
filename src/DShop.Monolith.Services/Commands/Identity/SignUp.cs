@@ -18,5 +18,10 @@ namespace DShop.Monolith.Services.Commands.Identity
             Password = password;
             Role = role;
         }
+
+        public void BindId(Func<object, object> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

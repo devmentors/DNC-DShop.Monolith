@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using DShop.Monolith.Services.Commands;
 using DShop.Monolith.Services.Commands.Customers;
 using DShop.Monolith.Infrastructure.Mvc;
-using DShop.Monolith.Services.Services;
+using DShop.Monolith.Services;
 
 namespace DShop.Monolith.Api.Controllers
 {

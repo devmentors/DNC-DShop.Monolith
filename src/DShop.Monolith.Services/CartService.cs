@@ -5,7 +5,7 @@ using DShop.Monolith.Core.Domain;
 using DShop.Monolith.Core.Repositories;
 using DShop.Monolith.Services.DTO;
 
-namespace DShop.Monolith.Services.Services
+namespace DShop.Monolith.Services
 {
     public class CartService : ICartService
     {

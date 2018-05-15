@@ -7,7 +7,7 @@ using DShop.Monolith.Core.Domain;
 using DShop.Monolith.Infrastructure.Types;
 using DShop.Monolith.Services.Queries;
 
-namespace DShop.Monolith.Services.Orders.Services
+namespace DShop.Monolith.Services
 {
     public class OrdersService : IOrdersService
     {

@@ -5,7 +5,7 @@ using DShop.Monolith.Core.Repositories;
 using DShop.Monolith.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Identity;
 
-namespace DShop.Monolith.Services.Identity.Services
+namespace DShop.Monolith.Services
 {
     public class RefreshTokenService : IRefreshTokenService
     {
