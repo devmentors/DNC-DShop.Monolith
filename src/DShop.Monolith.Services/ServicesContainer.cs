@@ -12,10 +12,13 @@ namespace DShop.Monolith.Services
         {
             var assembly = Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly)
-                    .AsImplementedInterfaces()
-                    .InstancePerLifetimeScope();
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(assembly)
                 .AsClosedTypesOf(typeof(ICommandHandler<>))
+                .InstancePerLifetimeScope();
+            builder.RegisterAssemblyTypes(assembly)
+                .AsClosedTypesOf(typeof(IEventHandler<>))
                 .InstancePerLifetimeScope();
             builder.RegisterType<PasswordHasher<User>>().As<IPasswordHasher<User>>();
         }

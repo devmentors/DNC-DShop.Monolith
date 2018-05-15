@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DShop.Monolith.Core.Domain
 {
-    public class Order : EntityBase, IAggregateRoot
+    public class Order : AggregateRoot
     {
         public Guid CustomerId { get; protected set; }
         public long Number { get; protected set; }

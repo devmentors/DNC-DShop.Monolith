@@ -11,8 +11,8 @@ namespace DShop.Monolith.Infrastructure
         {
             var assembly = Assembly.GetExecutingAssembly();
             builder.RegisterAssemblyTypes(assembly)
-                    .AsImplementedInterfaces()
-                    .InstancePerLifetimeScope();  
+                .AsImplementedInterfaces()
+                .InstancePerLifetimeScope();  
             builder.AddMongoDB();
             builder.AddMongoDBRepository<Cart>("Carts");
             builder.AddMongoDBRepository<Customer>("Customers");

@@ -2,7 +2,7 @@ using System;
 
 namespace DShop.Monolith.Core.Domain
 {
-    public class Product : EntityBase, IAggregateRoot
+    public class Product : AggregateRoot
     {
         public string Name { get; protected set; }
         public string Descirption { get; protected set; }

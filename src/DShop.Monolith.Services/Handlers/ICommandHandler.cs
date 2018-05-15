@@ -3,8 +3,8 @@ using DShop.Monolith.Services.Commands;
 
 namespace DShop.Monolith.Services.Handlers
 {
-    public interface ICommandHandler<in TCommand> where TCommand : ICommand
+    public interface ICommandHandler<in T> where T : ICommand
     {
-        Task HandleAsync(TCommand command);
+        Task HandleAsync(T command);
     }
 }

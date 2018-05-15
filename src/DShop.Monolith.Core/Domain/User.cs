@@ -1,9 +1,10 @@
 using System;
 using System.Text.RegularExpressions;
+using DShop.Monolith.Core.Events.Identity;
 
 namespace DShop.Monolith.Core.Domain
 {
-    public class User : EntityBase, IAggregateRoot
+    public class User : AggregateRoot
     {
         private static readonly Regex EmailRegex = new Regex(
             @"^(?("")("".+?(?<!\\)""@)|(([0-9a-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))" +
@@ -37,6 +38,7 @@ namespace DShop.Monolith.Core.Domain
             Role = role.ToLowerInvariant();
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
+            AddEvent(new SignedUp(Id, email, role));
         }
 
         public void SetPasswordHash(string passwordHash)

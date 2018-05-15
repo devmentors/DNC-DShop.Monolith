@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DShop.Monolith.Core.Domain
 {
-    public class Cart : EntityBase, IAggregateRoot
+    public class Cart : AggregateRoot
     {
         private ISet<CartItem> _items = new HashSet<CartItem>();
         public DateTime CreatedAt { get; protected set; }

@@ -52,8 +52,8 @@ namespace DShop.Monolith.Api.Controllers
             {
                 return Ok(Enumerable.Empty<T>());
             }
-            Response.Headers.Add("Link", GetLinkHeader(pagedResult));
-            Response.Headers.Add("X-Total-Count", pagedResult.TotalResults.ToString());
+            Response.Headers.Add("link", GetLinkHeader(pagedResult));
+            Response.Headers.Add("x-total-count", pagedResult.TotalResults.ToString());
 
             return Ok(pagedResult.Items);
         }

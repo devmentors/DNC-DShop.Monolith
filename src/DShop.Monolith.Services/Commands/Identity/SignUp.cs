@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace DShop.Monolith.Services.Commands.Identity
 {
-    public class SignUp
+    public class SignUp : ICommand
     {
         public Guid Id { get; }
         public string Email { get; }
@@ -17,11 +17,6 @@ namespace DShop.Monolith.Services.Commands.Identity
             Email = email;
             Password = password;
             Role = role;
-        }
-
-        public void BindId(Func<object, object> p)
-        {
-            throw new NotImplementedException();
         }
     }
 }

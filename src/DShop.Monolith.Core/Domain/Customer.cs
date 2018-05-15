@@ -1,8 +1,9 @@
 using System;
+using DShop.Monolith.Core.Events.Customers;
 
 namespace DShop.Monolith.Core.Domain
 {
-    public class Customer : EntityBase, IAggregateRoot
+    public class Customer : AggregateRoot
     {
         public string Email { get; protected set; }
         public string FirstName { get; protected set; }
@@ -32,6 +33,8 @@ namespace DShop.Monolith.Core.Domain
             Address = address;
             Country = country;
             CompletedAt = DateTime.UtcNow;
+            AddEvent(new CustomerCreated(Id,firstName, lastName,
+                address, country));
         }
     }
 }

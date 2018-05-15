@@ -5,6 +5,9 @@ using DShop.Monolith.Infrastructure.Types;
 using Microsoft.AspNetCore.Identity;
 using DShop.Monolith.Core.Repositories;
 using DShop.Monolith.Core.Domain;
+using DShop.Monolith.Services.Events;
+using System.Linq;
+using DShop.Monolith.Core.Events.Identity;
 
 namespace DShop.Monolith.Services
 {
@@ -14,16 +17,19 @@ namespace DShop.Monolith.Services
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly IJwtHandler _jwtHandler;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
+        private readonly IEventDispatcher _eventDispatcher;
 
         public IdentityService(IUserRepository userRepository,
             IPasswordHasher<User> passwordHasher,
             IJwtHandler jwtHandler,
-            IRefreshTokenRepository refreshTokenRepository)
+            IRefreshTokenRepository refreshTokenRepository,
+            IEventDispatcher eventDispatcher)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
             _jwtHandler = jwtHandler;
             _refreshTokenRepository = refreshTokenRepository;
+            _eventDispatcher = eventDispatcher;
         }
 
         public async Task SignUpAsync(Guid id, string email, string password, string role = "user")
@@ -41,6 +47,7 @@ namespace DShop.Monolith.Services
             user = new User(id, email, role);
             SetPassword(user, password);
             await _userRepository.CreateAsync(user);
+            await _eventDispatcher.DispatchAsync(user.Events.ToArray());
         }
 
         public async Task<JsonWebToken> SignInAsync(string email, string password)

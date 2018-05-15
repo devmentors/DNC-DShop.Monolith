@@ -2,7 +2,7 @@ using System;
 
 namespace DShop.Monolith.Core.Domain
 {
-    public class CartItem : EntityBase
+    public class CartItem : Entity
     {
         public Guid ProductId { get; protected set; }
         public string ProductName { get; protected set; }

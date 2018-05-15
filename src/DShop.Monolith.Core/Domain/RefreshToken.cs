@@ -2,7 +2,7 @@ using System;
 
 namespace DShop.Monolith.Core.Domain
 {
-    public class RefreshToken : EntityBase, IAggregateRoot
+    public class RefreshToken : AggregateRoot
     {
         public Guid UserId { get; protected set; }
         public string Token { get; protected set; }
