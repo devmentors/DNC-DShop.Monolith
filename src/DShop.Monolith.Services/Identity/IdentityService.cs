@@ -7,6 +7,7 @@ using DShop.Monolith.Core.Domain;
 using DShop.Monolith.Services.Dispatchers;
 using System.Linq;
 using DShop.Monolith.Core.Domain.Identity;
+using DShop.Monolith.Core.Domain.Identity.Factories;
 using DShop.Monolith.Core.Domain.Identity.Repositories;
 
 namespace DShop.Monolith.Services.Identity
@@ -17,35 +18,27 @@ namespace DShop.Monolith.Services.Identity
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly IJwtHandler _jwtHandler;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
+        private readonly IUserFactory _userFactory;
         private readonly IEventDispatcher _eventDispatcher;
 
         public IdentityService(IUserRepository userRepository,
             IPasswordHasher<User> passwordHasher,
             IJwtHandler jwtHandler,
             IRefreshTokenRepository refreshTokenRepository,
+            IUserFactory userFactory,
             IEventDispatcher eventDispatcher)
         {
             _userRepository = userRepository;
             _passwordHasher = passwordHasher;
             _jwtHandler = jwtHandler;
             _refreshTokenRepository = refreshTokenRepository;
+            _userFactory = userFactory;
             _eventDispatcher = eventDispatcher;
         }
 
-        public async Task SignUpAsync(Guid id, string email, string password, string role = "user")
+        public async Task SignUpAsync(Guid id, string email, string password, string role)
         {
-            var user = await _userRepository.GetAsync(email);
-            if (user != null)
-            {
-                throw new ServiceException("email_in_use",
-                    $"Email: '{email}' is already in use.");
-            }
-            if (string.IsNullOrWhiteSpace(role))
-            {
-                role = Role.User;
-            }
-            user = new User(id, email, role);
-            SetPassword(user, password);
+            var user = await _userFactory.CreateAsync(id, email, password, role);
             await _userRepository.CreateAsync(user);
             await _eventDispatcher.DispatchAsync(user.Events.ToArray());
         }

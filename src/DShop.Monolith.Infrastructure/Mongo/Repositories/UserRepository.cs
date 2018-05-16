@@ -20,6 +20,9 @@ namespace DShop.Monolith.Infrastructure.Mongo.Repositories
         public async Task<User> GetAsync(string email)
             => await _repository.GetAsync(x => x.Email == email.ToLowerInvariant());
 
+        public async Task<bool> IsEmailUnique(string email)
+            => await _repository.ExistsAsync(x => x.Email == email.ToLowerInvariant());
+
         public async Task CreateAsync(User user)
             => await _repository.CreateAsync(user);
 

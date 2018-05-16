@@ -44,6 +44,7 @@ namespace DShop.Monolith.Core.Domain.Identity
         public void SetPasswordHash(string passwordHash)
         {
             PasswordHash = passwordHash;
+            UpdatedAt = DateTime.UtcNow;
         }
     }
 }
