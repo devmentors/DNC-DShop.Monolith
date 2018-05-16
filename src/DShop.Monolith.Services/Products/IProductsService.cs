@@ -11,7 +11,7 @@ namespace DShop.Monolith.Services.Products
     {
         Task<ProductDto> GetAsync(Guid id);
         Task<IEnumerable<ProductDto>> GetAsync(IEnumerable<Guid> ids);
-        Task<PagedResult<ProductDto>> BrowseAsync(BrowseProducts query);
+        Task<IPagedResult<ProductDto>> BrowseAsync(BrowseProducts query);
         Task CreateAsync(Guid id, string name, string description, string vendor, decimal price);
         Task UpdateAsync(Guid id, string name, string description, decimal price);
         Task DeleteAsync(Guid id);

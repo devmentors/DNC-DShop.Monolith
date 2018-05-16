@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using DShop.Monolith.Core.Types;
+using DShop.Monolith.Infrastructure.Types;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 
@@ -8,10 +9,10 @@ namespace DShop.Monolith.Infrastructure.Mongo
 {
     public static class Pagination
     {
-        public static async Task<PagedResult<T>> PaginateAsync<T>(this IMongoQueryable<T> collection, PagedQuery query)
+        public static async Task<IPagedResult<T>> PaginateAsync<T>(this IMongoQueryable<T> collection, PagedQuery query)
             => await collection.PaginateAsync(query.Page, query.Results);
 
-        public static async Task<PagedResult<T>> PaginateAsync<T>(this IMongoQueryable<T> collection,
+        public static async Task<IPagedResult<T>> PaginateAsync<T>(this IMongoQueryable<T> collection,
             int page = 1, int resultsPerPage = 10)
         {
             if (page <= 0)

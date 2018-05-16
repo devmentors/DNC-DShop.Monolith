@@ -1,6 +1,8 @@
-﻿namespace DShop.Monolith.Core.Types
+﻿using DShop.Monolith.Core.Types;
+
+namespace DShop.Monolith.Infrastructure.Types
 {
-    public abstract class PagedResultBase
+    public abstract class PagedResultBase : IPagedResult
     {
         public int CurrentPage { get; private set; }
         public int ResultsPerPage { get; private set; }

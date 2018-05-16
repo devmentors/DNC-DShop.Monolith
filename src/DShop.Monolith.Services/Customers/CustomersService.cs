@@ -37,7 +37,7 @@ namespace DShop.Monolith.Services.Customers
             };
         }
 
-        public async Task<PagedResult<CustomerDto>> BrowseAsync(BrowseCustomers query)
+        public async Task<IPagedResult<CustomerDto>> BrowseAsync(BrowseCustomers query)
         {
             throw new NotImplementedException();
         }

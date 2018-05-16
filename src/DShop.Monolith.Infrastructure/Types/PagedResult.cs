@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using DShop.Monolith.Core.Types;
 
-namespace DShop.Monolith.Core.Types
+namespace DShop.Monolith.Infrastructure.Types
 {
-    public class PagedResult<T> : PagedResultBase
+    public class PagedResult<T> : PagedResultBase, IPagedResult<T>
     {
         public IEnumerable<T> Items { get; private set; } = Enumerable.Empty<T>();
-        public bool IsNotEmpty => Items.Any();
-        public bool IsEmpty => !IsNotEmpty;
+        public bool IsEmpty => !Items.Any();
 
         protected PagedResult()
         {

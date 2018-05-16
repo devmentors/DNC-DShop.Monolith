@@ -33,7 +33,7 @@ namespace DShop.Monolith.Services.Products
             };
         }
 
-        public async Task<PagedResult<ProductDto>> BrowseAsync(BrowseProducts query)
+        public async Task<IPagedResult<ProductDto>> BrowseAsync(BrowseProducts query)
         {
             throw new NotImplementedException();
         }

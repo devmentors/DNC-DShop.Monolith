@@ -38,7 +38,7 @@ namespace DShop.Monolith.Api.Controllers
             return NotFound();
         }
 
-        protected IActionResult Collection<T>(PagedResult<T> pagedResult, Func<PagedResult<T>,bool> criteria = null)
+        protected IActionResult Collection<T>(IPagedResult<T> pagedResult, Func<IPagedResult<T>,bool> criteria = null)
         {
             if (pagedResult == null)
             {
@@ -80,7 +80,7 @@ namespace DShop.Monolith.Api.Controllers
                     Request.Headers[AcceptLanguageHeader].First().ToLowerInvariant() :
                     DefaultCulture;
 
-        private string GetLinkHeader(PagedResultBase result)
+        private string GetLinkHeader(IPagedResult result)
         {
             var first = GetPageLink(result.CurrentPage, 1);
             var last = GetPageLink(result.CurrentPage, result.TotalPages);

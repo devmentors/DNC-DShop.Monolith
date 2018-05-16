@@ -10,7 +10,7 @@ namespace DShop.Monolith.Services.Orders
     public interface IOrdersService
     {
         Task<OrderDto> GetAsync(Guid id);
-        Task<PagedResult<OrderDto>> BrowseAsync(BrowseOrders browseOrders);
+        Task<IPagedResult<OrderDto>> BrowseAsync(BrowseOrders browseOrders);
         Task CreateAsync(Guid id, Guid customerId, long number, 
             IEnumerable<Guid> productIds, decimal totalAmount, string currency);
         Task CompleteAsync(Guid id);

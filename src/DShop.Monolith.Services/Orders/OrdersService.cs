@@ -34,7 +34,7 @@ namespace DShop.Monolith.Services.Orders
             };
         }
 
-        public async Task<PagedResult<OrderDto>> BrowseAsync(BrowseOrders browseOrders)
+        public async Task<IPagedResult<OrderDto>> BrowseAsync(BrowseOrders browseOrders)
         {
             throw new NotImplementedException();
         }
