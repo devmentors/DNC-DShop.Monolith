@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using DShop.Monolith.Core.Domain;
+using DShop.Monolith.Core.Domain.Products;
 
 namespace DShop.Monolith.Core.Repositories
 {

@@ -43,7 +43,7 @@ namespace DShop.Monolith.Infrastructure.Mongo
         }
 
         public static void AddMongoDBRepository<TEntity>(this ContainerBuilder builder, string collectionName) 
-            where TEntity : IIdentifiable
+            where TEntity : IEntity
             => builder.Register(ctx => new MongoRepository<TEntity>(ctx.Resolve<IMongoDatabase>(), collectionName))
                 .As<IMongoRepository<TEntity>>()
                 .InstancePerLifetimeScope();

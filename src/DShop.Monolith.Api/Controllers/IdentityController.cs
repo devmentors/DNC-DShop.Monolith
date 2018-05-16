@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using System;
 using DShop.Monolith.Infrastructure.Mvc;
-using DShop.Monolith.Services.Commands;
-using DShop.Monolith.Services.Commands.Identity;
+using DShop.Monolith.Services.Dispatchers;
+using DShop.Monolith.Services.Identity.Commands;
 using DShop.Monolith.Services;
+using DShop.Monolith.Services.Identity;
 
 namespace DShop.Monolith.Api.Controllers
 {
@@ -15,15 +16,11 @@ namespace DShop.Monolith.Api.Controllers
     {
         private readonly IIdentityService _identityService;
         private readonly IRefreshTokenService _refreshTokenService;
-        private readonly ICustomersService _customersService;
 
         public IdentityController(ICommandDispatcher commandDispatcher,
-            IIdentityService identityService,
-            ICustomersService customersService,
-            IRefreshTokenService refreshTokenService) : base(commandDispatcher)
+            IIdentityService identityService, IRefreshTokenService refreshTokenService) : base(commandDispatcher)
         {
             _identityService = identityService;
-            _customersService = customersService;
             _refreshTokenService = refreshTokenService;
         }
 

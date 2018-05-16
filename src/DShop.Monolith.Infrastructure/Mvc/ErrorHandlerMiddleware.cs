@@ -1,8 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using DShop.Monolith.Core.Domain;
-using DShop.Monolith.Infrastructure.Types;
+using DShop.Monolith.Core.Types;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
@@ -36,7 +35,7 @@ namespace DShop.Monolith.Infrastructure.Mvc
             var message = "There was an error.";
             switch(exception)
             {
-                case DShopException e:
+                case ServiceException e:
                     errorCode = e.Code;
                     message = e.Message;
                     break;

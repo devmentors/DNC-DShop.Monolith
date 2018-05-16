@@ -3,8 +3,7 @@ using DShop.Monolith.Core.Events;
 
 namespace DShop.Monolith.Core.Domain
 {
-    //Marker interface
-    public interface IAggregateRoot
+    public interface IAggregateRoot : IEntity
     {
         IEnumerable<IEvent> Events { get; }
     }

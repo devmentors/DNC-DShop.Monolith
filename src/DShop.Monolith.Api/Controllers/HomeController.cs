@@ -1,4 +1,4 @@
-using DShop.Monolith.Services.Commands;
+using DShop.Monolith.Services.Dispatchers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

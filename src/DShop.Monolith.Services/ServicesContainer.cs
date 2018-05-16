@@ -1,7 +1,7 @@
 using System.Reflection;
 using Autofac;
 using DShop.Monolith.Core.Domain;
-using DShop.Monolith.Services.Handlers;
+using DShop.Monolith.Core.Domain.Identity;
 using Microsoft.AspNetCore.Identity;
 
 namespace DShop.Monolith.Services

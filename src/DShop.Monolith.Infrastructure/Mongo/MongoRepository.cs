@@ -2,14 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using DShop.Monolith.Infrastructure.Types;
+using DShop.Monolith.Core.Types;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using DShop.Monolith.Core.Domain;
 
 namespace DShop.Monolith.Infrastructure.Mongo
 {
-    public class MongoRepository<TEntity> : IMongoRepository<TEntity> where TEntity : IIdentifiable
+    public class MongoRepository<TEntity> : IMongoRepository<TEntity> where TEntity : IEntity
     {
         protected IMongoCollection<TEntity> Collection { get; }
 

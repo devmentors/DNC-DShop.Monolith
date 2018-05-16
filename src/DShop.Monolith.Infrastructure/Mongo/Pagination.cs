@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using DShop.Monolith.Infrastructure.Types;
+using DShop.Monolith.Core.Types;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 

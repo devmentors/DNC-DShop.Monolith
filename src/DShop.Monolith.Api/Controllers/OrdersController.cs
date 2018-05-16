@@ -2,11 +2,12 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DShop.Monolith.Api.Framework;
-using DShop.Monolith.Services.Commands;
-using DShop.Monolith.Services.Commands.Orders;
+using DShop.Monolith.Services.Dispatchers;
+using DShop.Monolith.Services.Orders.Commands;
 using DShop.Monolith.Infrastructure.Mvc;
-using DShop.Monolith.Services.Queries;
 using DShop.Monolith.Services;
+using DShop.Monolith.Services.Orders;
+using DShop.Monolith.Services.Orders.Queries;
 
 namespace DShop.Monolith.Api.Controllers
 {

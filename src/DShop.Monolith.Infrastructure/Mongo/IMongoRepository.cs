@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using DShop.Monolith.Core.Domain;
-using DShop.Monolith.Infrastructure.Types;
+using DShop.Monolith.Core.Types;
 
 namespace DShop.Monolith.Infrastructure.Mongo
 {
-    public interface IMongoRepository<TEntity> where TEntity : IIdentifiable
+    public interface IMongoRepository<TEntity> where TEntity : IEntity
     {
          Task<TEntity> GetAsync(Guid id);
          Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
