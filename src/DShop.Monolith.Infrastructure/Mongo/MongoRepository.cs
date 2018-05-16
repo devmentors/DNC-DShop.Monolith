@@ -28,7 +28,7 @@ namespace DShop.Monolith.Infrastructure.Mongo
             => await Collection.Find(predicate).ToListAsync();
 
         public async Task<PagedResult<TEntity>> BrowseAsync<TQuery>(Expression<Func<TEntity, bool>> predicate,
-				TQuery query) where TQuery : PagedQueryBase
+				TQuery query) where TQuery : PagedQuery
 			=> await Collection.AsQueryable().Where(predicate).PaginateAsync(query);
 
 		public async Task CreateAsync(TEntity entity)

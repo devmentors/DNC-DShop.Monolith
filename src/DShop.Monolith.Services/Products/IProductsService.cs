@@ -1,5 +1,5 @@
 using DShop.Monolith.Core.Types;
-using DShop.Monolith.Services.DTO;
+using DShop.Monolith.Services.Products.Dtos;
 using DShop.Monolith.Services.Products.Queries;
 using System;
 using System.Collections.Generic;

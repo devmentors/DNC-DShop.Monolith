@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using DShop.Monolith.Core.Events;
+using DShop.Monolith.Core.Domain;
 
 namespace DShop.Monolith.Services.Dispatchers
 {

@@ -1,5 +1,5 @@
 using System;
-using DShop.Monolith.Core.Events.Customers;
+using DShop.Monolith.Core.Domain.Customers.Events;
 
 namespace DShop.Monolith.Core.Domain.Customers
 {

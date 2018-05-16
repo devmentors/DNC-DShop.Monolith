@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DShop.Monolith.Core.Domain.Customers;
-using DShop.Monolith.Core.Repositories;
+using DShop.Monolith.Core.Domain.Customers.Repositories;
 
 namespace DShop.Monolith.Infrastructure.Mongo.Repositories
 {

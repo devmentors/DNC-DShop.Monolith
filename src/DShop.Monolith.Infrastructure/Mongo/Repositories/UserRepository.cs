@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using DShop.Monolith.Core.Domain.Identity;
-using DShop.Monolith.Core.Repositories;
+using DShop.Monolith.Core.Domain.Identity.Repositories;
 
 namespace DShop.Monolith.Infrastructure.Mongo.Repositories
 {

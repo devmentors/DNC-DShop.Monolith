@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DShop.Monolith.Core.Domain;
 using DShop.Monolith.Core.Domain.Products;
-using DShop.Monolith.Core.Repositories;
+using DShop.Monolith.Core.Domain.Products.Repositories;
 using DShop.Monolith.Core.Types;
-using DShop.Monolith.Services.DTO;
+using DShop.Monolith.Services.Products.Dtos;
 using DShop.Monolith.Services.Products.Queries;
 
 namespace DShop.Monolith.Services.Products

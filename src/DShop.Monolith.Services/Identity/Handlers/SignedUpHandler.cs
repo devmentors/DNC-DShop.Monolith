@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using DShop.Monolith.Core.Events.Identity;
+using DShop.Monolith.Core.Domain.Identity.Events;
 using DShop.Monolith.Services.Customers;
 
 namespace DShop.Monolith.Services.Identity.Handlers

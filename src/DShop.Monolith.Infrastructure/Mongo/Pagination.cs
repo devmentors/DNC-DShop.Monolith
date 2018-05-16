@@ -8,7 +8,7 @@ namespace DShop.Monolith.Infrastructure.Mongo
 {
     public static class Pagination
     {
-        public static async Task<PagedResult<T>> PaginateAsync<T>(this IMongoQueryable<T> collection, PagedQueryBase query)
+        public static async Task<PagedResult<T>> PaginateAsync<T>(this IMongoQueryable<T> collection, PagedQuery query)
             => await collection.PaginateAsync(query.Page, query.Results);
 
         public static async Task<PagedResult<T>> PaginateAsync<T>(this IMongoQueryable<T> collection,
@@ -34,7 +34,7 @@ namespace DShop.Monolith.Infrastructure.Mongo
             return PagedResult<T>.Create(data, page, resultsPerPage, totalPages, totalResults);
         }
 
-        public static IMongoQueryable<T> Limit<T>(this IMongoQueryable<T> collection, PagedQueryBase query)
+        public static IMongoQueryable<T> Limit<T>(this IMongoQueryable<T> collection, PagedQuery query)
             => collection.Limit(query.Page, query.Results);
 
         public static IMongoQueryable<T> Limit<T>(this IMongoQueryable<T> collection,

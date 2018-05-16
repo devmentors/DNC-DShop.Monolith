@@ -13,7 +13,7 @@ namespace DShop.Monolith.Infrastructure.Mongo
          Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
          Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> predicate);
          Task<PagedResult<TEntity>> BrowseAsync<TQuery>(Expression<Func<TEntity, bool>> predicate,
-				TQuery query) where TQuery : PagedQueryBase;
+				TQuery query) where TQuery : PagedQuery;
          Task CreateAsync(TEntity entity);
          Task UpdateAsync(TEntity entity);
          Task DeleteAsync(Guid id); 

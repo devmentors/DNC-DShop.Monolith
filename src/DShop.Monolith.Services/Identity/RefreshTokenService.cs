@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using DShop.Monolith.Core.Domain;
 using DShop.Monolith.Core.Domain.Identity;
-using DShop.Monolith.Core.Repositories;
+using DShop.Monolith.Core.Domain.Identity.Repositories;
 using DShop.Monolith.Core.Types;
 using DShop.Monolith.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Identity;

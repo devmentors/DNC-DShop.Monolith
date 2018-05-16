@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using DShop.Monolith.Services.DTO;
+using DShop.Monolith.Services.Carts.Dtos;
 
 namespace DShop.Monolith.Services.Customers
 {

@@ -1,6 +1,6 @@
 using System;
 using System.Text.RegularExpressions;
-using DShop.Monolith.Core.Events.Identity;
+using DShop.Monolith.Core.Domain.Identity.Events;
 
 namespace DShop.Monolith.Core.Domain.Identity
 {

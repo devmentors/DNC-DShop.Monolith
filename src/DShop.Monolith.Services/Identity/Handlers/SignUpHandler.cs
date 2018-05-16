@@ -14,6 +14,6 @@ namespace DShop.Monolith.Services.Identity.Handlers
 
         public async Task HandleAsync(SignUp command)
             => await _identityService.SignUpAsync(command.Id, 
-                command.Email, command.Password, command.Role);            
+                command.Email, command.Password, command.Role);
     }
 }

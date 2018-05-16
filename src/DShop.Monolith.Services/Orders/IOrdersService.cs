@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using DShop.Monolith.Core.Types;
-using DShop.Monolith.Services.DTO;
+using DShop.Monolith.Services.Orders.Dtos;
 using DShop.Monolith.Services.Orders.Queries;
 
 namespace DShop.Monolith.Services.Orders

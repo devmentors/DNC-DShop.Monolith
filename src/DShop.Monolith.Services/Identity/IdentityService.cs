@@ -3,11 +3,11 @@ using System.Threading.Tasks;
 using DShop.Monolith.Infrastructure.Authentication;
 using DShop.Monolith.Core.Types;
 using Microsoft.AspNetCore.Identity;
-using DShop.Monolith.Core.Repositories;
 using DShop.Monolith.Core.Domain;
 using DShop.Monolith.Services.Dispatchers;
 using System.Linq;
 using DShop.Monolith.Core.Domain.Identity;
+using DShop.Monolith.Core.Domain.Identity.Repositories;
 
 namespace DShop.Monolith.Services.Identity
 {

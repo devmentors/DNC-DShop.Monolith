@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using DShop.Monolith.Core.Types;
+using DShop.Monolith.Services.Carts.Dtos;
 using DShop.Monolith.Services.Customers.Queries;
-using DShop.Monolith.Services.DTO;
 
 namespace DShop.Monolith.Services.Customers
 {

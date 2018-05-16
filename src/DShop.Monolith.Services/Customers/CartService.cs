@@ -3,9 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using DShop.Monolith.Core.Domain;
 using DShop.Monolith.Core.Domain.Customers;
-using DShop.Monolith.Core.Repositories;
+using DShop.Monolith.Core.Domain.Customers.Repositories;
+using DShop.Monolith.Core.Domain.Products.Repositories;
 using DShop.Monolith.Core.Types;
-using DShop.Monolith.Services.DTO;
+using DShop.Monolith.Services.Carts.Dtos;
 
 namespace DShop.Monolith.Services.Customers
 {

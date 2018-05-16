@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using DShop.Monolith.Api.Framework;
 using DShop.Monolith.Infrastructure;
 using DShop.Monolith.Infrastructure.Authentication;
 using DShop.Monolith.Infrastructure.Mvc;
@@ -66,7 +67,7 @@ namespace DShop.Monolith.Api
             }
             app.UseAuthentication();
             app.UseCors(CorsPolicy);
-            app.UseErrorHandler();
+            app.UseMiddleware<ErrorHandlerMiddleware>();
             app.UseMvc();
             applicationLifetime.ApplicationStopped.Register(() => Container.Dispose());
         }

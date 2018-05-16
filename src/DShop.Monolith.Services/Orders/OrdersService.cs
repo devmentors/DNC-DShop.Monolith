@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using DShop.Monolith.Core.Repositories;
-using DShop.Monolith.Services.DTO;
-using DShop.Monolith.Core.Domain;
+using DShop.Monolith.Core.Domain.Orders;
 using DShop.Monolith.Core.Types;
 using DShop.Monolith.Services.Orders.Queries;
-using DShop.Monolith.Core.Domain.Orders;
+using DShop.Monolith.Services.Orders.Dtos;
+using DShop.Monolith.Core.Domain.Orders.Repositories;
 
 namespace DShop.Monolith.Services.Orders
 {

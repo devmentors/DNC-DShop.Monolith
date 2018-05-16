@@ -27,9 +27,6 @@ namespace DShop.Monolith.Infrastructure.Mvc
                     opts.SerializerSettings.Converters.Add(new StringEnumConverter());
                 });
 
-        public static IApplicationBuilder UseErrorHandler(this IApplicationBuilder builder)
-            => builder.UseMiddleware<ErrorHandlerMiddleware>();
-
         public static IWebHostBuilder UseLockbox(this IWebHostBuilder builder)
             => builder.ConfigureAppConfiguration((ctx, cfg) => 
                 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DShop.Monolith.Core.Domain.Orders;
-using DShop.Monolith.Core.Repositories;
+using DShop.Monolith.Core.Domain.Orders.Repositories;
 
 namespace DShop.Monolith.Infrastructure.Mongo.Repositories
 {
