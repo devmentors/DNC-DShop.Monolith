@@ -2,6 +2,9 @@ using System.Reflection;
 using Autofac;
 using DShop.Monolith.Core.Domain;
 using DShop.Monolith.Core.Domain.Identity;
+using DShop.Monolith.Core.Domain.Identity.Factories;
+using DShop.Monolith.Core.Domain.Identity.Specifications;
+using DShop.Monolith.Core.Types;
 using Microsoft.AspNetCore.Identity;
 
 namespace DShop.Monolith.Services
@@ -10,15 +13,13 @@ namespace DShop.Monolith.Services
     {
         public static void Load(ContainerBuilder builder)
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            builder.RegisterAssemblyTypes(assembly)
+            var servicesAssembly = Assembly.GetExecutingAssembly();
+            var coreAssembly = Assembly.GetAssembly(typeof(IEntity));
+            builder.RegisterAssemblyTypes(servicesAssembly)
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
-            builder.RegisterAssemblyTypes(assembly)
-                .AsClosedTypesOf(typeof(ICommandHandler<>))
-                .InstancePerLifetimeScope();
-            builder.RegisterAssemblyTypes(assembly)
-                .AsClosedTypesOf(typeof(IEventHandler<>))
+            builder.RegisterAssemblyTypes(coreAssembly)
+                .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
             builder.RegisterType<PasswordHasher<User>>().As<IPasswordHasher<User>>();
         }

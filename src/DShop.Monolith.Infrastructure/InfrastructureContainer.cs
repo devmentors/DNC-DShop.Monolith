@@ -24,7 +24,7 @@ namespace DShop.Monolith.Infrastructure
             builder.AddMongoDBRepository<Order>("Orders");
             builder.AddMongoDBRepository<Product>("Products");
             builder.AddMongoDBRepository<RefreshToken>("RefreshTokens");
-            builder.AddMongoDBRepository<User>("User");
+            builder.AddMongoDBRepository<User>("Users");
         }        
     }
 }
