@@ -18,7 +18,7 @@ namespace DShop.Monolith.Core.Domain.Customers
         {
         }
 
-        public Cart(Guid userId)
+        public Cart(Guid userId) : base(userId)
         {
             Id = userId;
             CreatedAt = DateTime.UtcNow;

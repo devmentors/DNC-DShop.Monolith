@@ -12,8 +12,8 @@ namespace DShop.Monolith.Core.Domain.Orders
         public string Currency { get; protected set; }
         public OrderStatus Status { get; protected set; }
 
-        public Order(Guid id, Guid customerId, long number, IEnumerable<Guid> productIds, decimal totalAmount, string currency)
-            :base(id)
+        public Order(Guid id, Guid customerId, long number, IEnumerable<Guid> productIds, 
+            decimal totalAmount, string currency) : base(id)
         {
             CustomerId = customerId;
             Number = number;
@@ -29,7 +29,6 @@ namespace DShop.Monolith.Core.Domain.Orders
             {
                 throw new DomainException("Cannot complete canceled order.");
             }
-
             Status = OrderStatus.Completed;
         }
 
@@ -39,7 +38,6 @@ namespace DShop.Monolith.Core.Domain.Orders
             {
                 throw new DomainException("Cannot cancel completed order.");
             }
-
             Status = OrderStatus.Canceled;
         }
 

@@ -18,9 +18,8 @@ namespace DShop.Monolith.Core.Domain.Customers
         {
         }
 
-        public Customer(Guid id, string email)
+        public Customer(Guid id, string email) : base(id)
         {
-            Id = id;
             Email = email;
             CreatedAt = DateTime.UtcNow;
         }
@@ -33,8 +32,7 @@ namespace DShop.Monolith.Core.Domain.Customers
             Address = address;
             Country = country;
             CompletedAt = DateTime.UtcNow;
-            AddEvent(new CustomerCreated(Id,firstName, lastName,
-                address, country));
+            AddEvent(new CustomerCreated(Id, firstName, lastName, address, country));
         }
     }
 }

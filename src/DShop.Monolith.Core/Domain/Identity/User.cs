@@ -21,7 +21,7 @@ namespace DShop.Monolith.Core.Domain.Identity
         {
         }
 
-        public User(Guid id, string email, string role)
+        public User(Guid id, string email, string role) : base(id)
         {
             if (!EmailRegex.IsMatch(email))
             {
@@ -33,12 +33,11 @@ namespace DShop.Monolith.Core.Domain.Identity
                 throw new DomainException("invalid_role", 
                     $"Invalid role: '{role}'.");
             }        
-            Id = id;
             Email = email.ToLowerInvariant();
             Role = role.ToLowerInvariant();
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
-            AddEvent(new SignedUp(Id, email, role));
+            AddEvent(new SignedUp(id, email, role));
         }
 
         public void SetPasswordHash(string passwordHash)

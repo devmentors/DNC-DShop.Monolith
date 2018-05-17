@@ -9,8 +9,7 @@ namespace DShop.Monolith.Core.Domain.Products
         public string Vendor { get; protected set; }
         public decimal Price { get; protected set; }
 
-        public Product(Guid id, string name, string description, string vendor, decimal price)
-            : base(id)
+        public Product(Guid id, string name, string description, string vendor, decimal price) : base(id)
         {
             Vendor = vendor;
             SetName(name); 

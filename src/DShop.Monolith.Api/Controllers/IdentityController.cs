@@ -26,7 +26,7 @@ namespace DShop.Monolith.Api.Controllers
 
         [HttpPost("sign-up")]
         public async Task<IActionResult> SignUp([FromBody] SignUp command)
-            => await DispatchAsync(command);
+            => await DispatchAsync(command.BindId(c => c.Id));
 
         [HttpPost("sign-in")]
         public async Task<IActionResult> SignIn([FromBody] SignIn command)
