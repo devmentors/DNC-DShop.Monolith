@@ -6,7 +6,7 @@ POST http://localhost:5000/sign-up
 content-type: application/json
 
 {
-	"email": "user@mailinator.com",
+	"email": "user2@mailinator.com",
 	"password": "secret",
 	"role": "admin"
 }
@@ -31,6 +31,10 @@ content-type: application/json
 	"address": "DNC 3",
 	"country": "Poland"
 }
+
+###
+GET http://localhost:5000/me
+authorization: Bearer {{token}}
 
 ###
 GET http://localhost:5000/cart

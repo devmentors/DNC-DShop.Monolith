@@ -10,15 +10,15 @@ namespace DShop.Monolith.Core.Domain.Identity.Factories
     {
         private readonly IUserRepository _userRepository;
         private readonly IUniqueEmailSpecification _uniqueEmailSpecification;
-        private readonly IPasswordHasher _passwordHasher;
+        private readonly IHasher _hasher;
 
         public UserFactory(IUserRepository userRepository,
             IUniqueEmailSpecification uniqueEmailSpecification,
-            IPasswordHasher passwordHasher)
+            IHasher hasher)
         {
             _userRepository = userRepository;
             _uniqueEmailSpecification = uniqueEmailSpecification;
-            _passwordHasher = passwordHasher;
+            _hasher = hasher;
         }
 
         public async Task<User> CreateAsync(Guid id, string email, string password, string role = Role.User)
@@ -34,7 +34,7 @@ namespace DShop.Monolith.Core.Domain.Identity.Factories
                 role = Role.User;
             }
             var user = new User(id, email, role);
-            _passwordHasher.SetPasswordHash(user, password);
+            user.SetPasswordHash(_hasher.Create(user, password));
 
             return user;
         }

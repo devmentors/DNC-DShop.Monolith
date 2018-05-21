@@ -9,27 +9,28 @@ using System.Linq;
 using DShop.Monolith.Core.Domain.Identity;
 using DShop.Monolith.Core.Domain.Identity.Factories;
 using DShop.Monolith.Core.Domain.Identity.Repositories;
+using DShop.Monolith.Core.Domain.Identity.Services;
 
 namespace DShop.Monolith.Services.Identity
 {
     public class IdentityService : IIdentityService
     {
         private readonly IUserRepository _userRepository;
-        private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly IHasher _hasher;
         private readonly IJwtHandler _jwtHandler;
         private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly IUserFactory _userFactory;
         private readonly IEventDispatcher _eventDispatcher;
 
         public IdentityService(IUserRepository userRepository,
-            IPasswordHasher<User> passwordHasher,
+            IHasher hasher,
             IJwtHandler jwtHandler,
             IRefreshTokenRepository refreshTokenRepository,
             IUserFactory userFactory,
             IEventDispatcher eventDispatcher)
         {
             _userRepository = userRepository;
-            _passwordHasher = passwordHasher;
+            _hasher = hasher;
             _jwtHandler = jwtHandler;
             _refreshTokenRepository = refreshTokenRepository;
             _userFactory = userFactory;
@@ -43,17 +44,26 @@ namespace DShop.Monolith.Services.Identity
             await _eventDispatcher.DispatchAsync(user.Events.ToArray());
         }
 
-        public async Task<JsonWebToken> SignInAsync(string email, string password)
+        public async Task<IdentityToken> SignInAsync(string email, string password)
         {
             var user = await _userRepository.GetAsync(email);
-            if (user == null || !ValidatePassword(user,password, _passwordHasher))
+            if (user == null || !_hasher.IsValid(user, password))
             {
                 throw new ServiceException("invalid_credentials",
                     "Invalid credentials.");
             }
             var jwt = _jwtHandler.CreateToken(user.Id, user.Role);
+            var token = _hasher.Create(user, user.Id.ToString("N"), "=", "+", "\\");
+            await _refreshTokenRepository.CreateAsync(new RefreshToken(user, token));
 
-            return jwt;
+            return new IdentityToken
+            {
+                AccessToken = jwt.AccessToken,
+                Expires = jwt.Expires,
+                RefreshToken = token,
+                Role = user.Role,
+                UserId = user.Id
+            };
         }
 
         public async Task ChangePasswordAsync(Guid userId, string currentPassword, string newPassword)
@@ -64,7 +74,7 @@ namespace DShop.Monolith.Services.Identity
                 throw new ServiceException("user_not_found", 
                     $"User: '{userId}' was not found.");
             }
-            if (!ValidatePassword(user, currentPassword, _passwordHasher))
+            if (!_hasher.IsValid(user, currentPassword))
             {
                 throw new ServiceException("invalid_current_password", 
                     "Invalid current password.");
@@ -75,11 +85,8 @@ namespace DShop.Monolith.Services.Identity
 
         private void SetPassword(User user, string password)
         {
-            var passwordHash = _passwordHasher.HashPassword(user, password);
+            var passwordHash = _hasher.Create(user, password);
             user.SetPasswordHash(passwordHash);
         }
-
-        private static bool ValidatePassword(User user, string password, IPasswordHasher<User> passwordHasher)
-            => passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password) != PasswordVerificationResult.Failed;
     }
 }

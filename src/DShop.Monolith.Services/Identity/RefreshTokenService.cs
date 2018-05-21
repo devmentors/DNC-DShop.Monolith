@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using DShop.Monolith.Core.Domain;
 using DShop.Monolith.Core.Domain.Identity;
 using DShop.Monolith.Core.Domain.Identity.Repositories;
+using DShop.Monolith.Core.Domain.Identity.Services;
 using DShop.Monolith.Core.Types;
 using DShop.Monolith.Infrastructure.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -14,17 +15,17 @@ namespace DShop.Monolith.Services.Identity
         private readonly IRefreshTokenRepository _refreshTokenRepository;
         private readonly IUserRepository _userRepository;
         private readonly IJwtHandler _jwtHandler;
-        private readonly IPasswordHasher<User> _passwordHasher;
+        private readonly IHasher _hasher;
 
         public RefreshTokenService(IRefreshTokenRepository refreshTokenRepository,
             IUserRepository userRepository,
             IJwtHandler jwtHandler,
-            IPasswordHasher<User> passwordHasher)
+            IHasher hasher)
         {
             _refreshTokenRepository = refreshTokenRepository;
             _userRepository = userRepository;
             _jwtHandler = jwtHandler;
-            _passwordHasher = passwordHasher;
+            _hasher = hasher;
         }
 
         public async Task CreateAsync(Guid userId)
@@ -35,11 +36,11 @@ namespace DShop.Monolith.Services.Identity
                 throw new ServiceException("user_not_found", 
                     $"User: '{userId}' was not found.");
             }
-            var token = CreateToken(user, _passwordHasher);
+            var token = _hasher.Create(user, userId.ToString("N"), "=", "+", "\\");
             await _refreshTokenRepository.CreateAsync(new RefreshToken(user, token));
         }
 
-        public async Task<JsonWebToken> CreateAccessTokenAsync(string token)
+        public async Task<IdentityToken> CreateAccessTokenAsync(string token)
         {
             var refreshToken = await _refreshTokenRepository.GetAsync(token);
             if (refreshToken == null)
@@ -59,9 +60,15 @@ namespace DShop.Monolith.Services.Identity
                     $"User: '{refreshToken.UserId}' was not found.");
             }
             var jwt = _jwtHandler.CreateToken(user.Id, user.Role);
-            jwt.RefreshToken = refreshToken.Token;
             
-            return jwt;
+            return new IdentityToken
+            {
+                AccessToken = jwt.AccessToken,
+                Expires = jwt.Expires,
+                RefreshToken = refreshToken.Token,
+                Role = user.Role,
+                UserId = user.Id
+            };
         }
 
         public async Task RevokeAsync(string token, Guid userId)
@@ -75,11 +82,5 @@ namespace DShop.Monolith.Services.Identity
             refreshToken.Revoke();
             await _refreshTokenRepository.UpdateAsync(refreshToken);
         }
-
-        private static string CreateToken(User user, IPasswordHasher<User> passwordHasher)
-            => passwordHasher.HashPassword(user, Guid.NewGuid().ToString("N"))
-                .Replace("=", string.Empty)
-                .Replace("+", string.Empty)
-                .Replace("/", string.Empty);
     }
 }

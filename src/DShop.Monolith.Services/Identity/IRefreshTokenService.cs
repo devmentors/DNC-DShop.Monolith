@@ -7,7 +7,7 @@ namespace DShop.Monolith.Services.Identity
     public interface IRefreshTokenService
     {
         Task CreateAsync(Guid userId);
-        Task<JsonWebToken> CreateAccessTokenAsync(string refreshToken);
+        Task<IdentityToken> CreateAccessTokenAsync(string refreshToken);
         Task RevokeAsync(string refreshToken, Guid userId);
     }
 }
