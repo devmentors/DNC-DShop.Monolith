@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.1.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DShop.Monolith.Core\DShop.Monolith.Core.csproj" />
